@@ -1,3 +1,16 @@
+import React from "react";
+import "./App.css";  // 👈 This line makes sure styles load
+
+function App() {
+  return (
+    <div>
+      <h1>Hello, Chat Application!</h1>
+    </div>
+  );
+}
+
+export default App;
+
 import React, { useState, useEffect, useRef } from "react";
 import { Send, User, MessageSquare } from "lucide-react";
 
