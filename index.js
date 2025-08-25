@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>React Chat App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body>
-    <!-- React will mount here -->
-    <div id="root"></div>
-  </body>
-</html>
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./styles.css"; // optional: Tailwind or custom styles
+import App from "./App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
