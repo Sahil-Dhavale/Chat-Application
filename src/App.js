@@ -1,23 +1,38 @@
 import React, { useState } from "react";
-import ChatWindow from "./components/ChatWindow";
-import MessageInput from "./components/MessageInput";
-import { dummyMessages } from "./utils/dummyMessages";
 
 function App() {
-  const [messages, setMessages] = useState(dummyMessages);
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState("");
 
-  const handleSend = (text) => {
-    if (text.trim()) {
-      const newMessage = { sender: "You", text };
-      setMessages([...messages, newMessage]);
-    }
+  const handleSend = () => {
+    if (input.trim() === "") return;
+
+    setMessages([...messages, { text: input, sender: "You" }]);
+    setInput("");
   };
 
   return (
-    <div className="app">
-      <h2 className="app-header">💬 Simple Chat App</h2>
-      <ChatWindow messages={messages} />
-      <MessageInput onSend={handleSend} />
+    <div className="chat-container">
+      <h1>💬 Chat Application</h1>
+      <div className="chat-box">
+        {messages.map((msg, index) => (
+          <div key={index} className="chat-message">
+            <strong>{msg.sender}: </strong>
+            {msg.text}
+          </div>
+        ))}
+      </div>
+
+      <div className="chat-input">
+        <input
+          type="text"
+          placeholder="Type your message..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleSend()}
+        />
+        <button onClick={handleSend}>Send</button>
+      </div>
     </div>
   );
 }
